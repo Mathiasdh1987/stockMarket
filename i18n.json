@@ -1,0 +1,19 @@
+  {
+    "locales": [
+      "en",
+      "de"
+    ],
+    "defaultLocale": "en",
+    "pages": {
+      "*": [
+        "common"
+      ],
+      "/": [
+        "home",
+        "example"
+      ],
+      "/about": [
+        "about"
+      ]
+    }
+  }

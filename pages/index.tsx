@@ -1,26 +1,11 @@
 import { observer } from 'mobx-react-lite'
-import { useStore } from 'mobx-store-provider'
-import styled from 'styled-components'
+import useTranslation from 'next-translate/useTranslation'
 
-const Title = styled.h1`
-  color: red;
-  font-size: 50px;
-`
+function PageHome() {
+  const { t, lang } = useTranslation('common')
+  const name = t('name')
 
-const PageHome = () => {
-  const { applicationStore } = useStore()
-
-  return (
-    <>
-      <Title>
-        TESTETSEST
-        Hallo! Heute ist {applicationStore.formattedDate}.{' '}
-        <button onClick={() => applicationStore.increaseByOneDay()}>
-          Add a day
-        </button>
-      </Title>
-    </>
-  )
+  return <div>{name}</div> // <div>Using a variable 42</div>
 }
 
 export default observer(PageHome)
