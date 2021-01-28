@@ -13,6 +13,7 @@ const PageHome = () => {
   return (
     <>
       <Title>
+        TESTETSEST
         Hallo! Heute ist {applicationStore.formattedDate}.{' '}
         <button onClick={() => applicationStore.increaseByOneDay()}>
           Add a day
