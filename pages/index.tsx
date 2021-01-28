@@ -5,7 +5,6 @@ function PageHome() {
   const { t, lang } = useTranslation('common')
   const name = t('name')
 
-  return <div>{name}</div> // <div>Using a variable 42</div>
+  return <div>{name}</div>
 }
-
 export default observer(PageHome)
