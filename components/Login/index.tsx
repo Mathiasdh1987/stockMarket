@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, CSSProperties } from 'react'
+import React, { useState, CSSProperties } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {
@@ -19,7 +19,7 @@ export default function Login() {
   const [error, isError] = useState<boolean>(false)
   const router = useRouter()
   const [open, isOpen] = useState<boolean>(false)
-  const wrapperRef = useRef(null)
+  // const wrapperRef = useRef(null)
   const [loggedIn, setLoggedIn] = useState(false)
   const [uid, setUid] = useState<String>('')
   const [activeUser, setActiveUser] = useState<String>('')
