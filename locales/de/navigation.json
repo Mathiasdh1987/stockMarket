@@ -1,0 +1,18 @@
+{
+  "download-app": "App laden",
+  "home": "Startseite",
+  "links": [
+    {
+      "name": "Eigenschaften",
+      "href": "/features"
+    },
+    {
+      "name": "Über uns",
+      "href": "/about"
+    },
+    {
+      "name": "Kontakt",
+      "href": "/contact"
+    }
+  ]
+}

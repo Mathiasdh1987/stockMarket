@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "firebase": "^8.2.7",
     "mobx": "^5.15.7",
     "mobx-react": "^6.3.1",
     "mobx-react-lite": "^2.2.2",
@@ -19,6 +20,7 @@
     "next-translate": "^1.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "styled-bootstrap-grid": "^3.1.0",
     "styled-components": "^5.2.1",
     "styled-reset": "^4.3.1"
   },

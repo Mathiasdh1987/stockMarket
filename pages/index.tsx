@@ -1,10 +1,16 @@
 import { observer } from 'mobx-react-lite'
-import useTranslation from 'next-translate/useTranslation'
+import Navigation from '../components/Navigation'
+import Footer from '../components/Footer'
+import IndexDashboard from '../sections/index/IndexDashboard'
 
 function PageHome() {
-  const { t, lang } = useTranslation('common')
-  const name = t('name')
-
-  return <div>{name}</div>
+  // const { t, lang } = useTranslation('common')
+  return (
+    <>
+      <Navigation />
+      <IndexDashboard />
+      <Footer />
+    </>
+  )
 }
 export default observer(PageHome)
