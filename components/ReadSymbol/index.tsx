@@ -39,6 +39,7 @@ const ReadSymbol = (props: any) => {
       ActiveUser: {activeUser} <br />
       UID: {activeUid} <br />
       API: {currentApi}
+      Symbol: {symbols}
     </div>
   )
 }

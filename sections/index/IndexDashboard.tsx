@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'styled-bootstrap-grid'
 // import useTranslation from 'next-translate/useTranslation'
-import Link from 'next/link'
+// import Link from 'next/link'
 import { Wrapper, Tools } from './styles'
 // import CreatePost from '../../components/CreatePost'
 // import ReadPost from '../../components/ReadPost'
-import ReadSymbol from '../../components/ReadSymbol'
+// import ReadSymbol from '../../components/ReadSymbol'
 import Login from '../../components/Login'
 import fire from '../../config/fire-config'
 
 const IndexDashboard = () => {
   // const { t } = useTranslation()
-  const [notification, setNotification] = useState('')
-  const [loggedIn, setLoggedIn] = useState(false)
+  // const [notification, setNotification] = useState('')
+  // const [loggedIn, setLoggedIn] = useState(false)
   const [uid, setUid] = useState<String>('')
   const [activeUser, setActiveUser] = useState<String>('')
 
@@ -20,23 +20,23 @@ const IndexDashboard = () => {
     return (
       <div>
         <h1>Data:</h1>
-        <div>{activeUser}</div>
-        <div>{uid}</div>
+        <div>User: {activeUser}</div>
+        <div>UID: {uid}</div>
       </div>
     )
   }
 
-  fire.auth().onAuthStateChanged((user) => {
-    if (user) {
-      setLoggedIn(true)
-      setActiveUser(user!.email!)
-      setUid(user!.uid!)
-    } else {
-      setLoggedIn(false)
-      setActiveUser('')
-      setUid('')
-    }
-  })
+  // fire.auth().onAuthStateChanged((user) => {
+  //   if (user) {
+  //     setLoggedIn(true)
+  //     setActiveUser(user!.email!)
+  //     setUid(user!.uid!)
+  //   } else {
+  //     setLoggedIn(false)
+  //     setActiveUser('')
+  //     setUid('')
+  //   }
+  // })
 
   // const handleLogout = () => {
   //   fire
@@ -69,7 +69,6 @@ const IndexDashboard = () => {
               <Col lg={11}>
                 <div>
                   <h1 style={{ fontSize: '3vw' }}>DashBoard</h1>
-                  {notification}
                   {getUserData()}
                   {/* <ReadPost /> */}
                   {/* {loggedIn && <CreatePost />} */}

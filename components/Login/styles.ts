@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   // color: ${colors.black};
 `
 
-export const Button = styled.button`
+export const ToolButton = styled.button`
   background: none;
   height: 64px;
   width: 64px;
@@ -20,7 +20,6 @@ export const Button = styled.button`
   cursor: pointer;
   outline: 0;
 `
-
 export const Avatar = styled(SvgLogoSmall)`
   background: black;
   border-radius: 50%;
@@ -31,7 +30,6 @@ export const Avatar = styled(SvgLogoSmall)`
     background: ${colors.blue};
   }
 `
-
 export const Dropdown = styled.div<{ isActive?: boolean }>`
 border-radius: 0 12px 12px 0;
 background: ${colors.primary};
@@ -42,24 +40,60 @@ background: ${colors.primary};
   border: 1px solid rgba(0, 0, 0, 0.04);
   box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.14);
   opacity: ${(props) => (props.isActive ? '1' : '0')};
-  width: ${(props) => (props.isActive ? '400px' : '0')};
+  width: ${(props) => (props.isActive ? '340px' : '0')};
   transition: all 0.5s;
-  transition-delay: ${(props) => (props.isActive ? '0s' : '0.2s')};
+  transition-delay: ${(props) => (props.isActive ? '0s' : '0.3s')};
   
-  form {
-    transition: 0.5s;
-    opacity: ${(props) => (props.isActive ? '1' : '0')};
-    transition-delay: ${(props) => (props.isActive ? '0.5s' : '0s')};
+  div {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    
+    form {
+      transition: 0.5s;
+      opacity: ${(props) => (props.isActive ? '1' : '0')};
+      transition-delay: ${(props) => (props.isActive ? '0.5s' : '0s')};
+    }
+
+     button {
+    width: 50%;
+    font-size: 100%;
+    font-weight: 900;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    background: ${colors.blue};
+    transition: all 0.2s ease-in;
+
+    :hover {
+      transform: scale(1.1);
+    }
   }
-}`
-
-export const LoginDiv = styled.div`
-  margin: 10px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
 `
+export const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 
+  h1 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 900;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    background: ${colors.primaryDark};
+    border-radius: 12px;
+    padding 5px;
+    margin: 10px 0;
+  }
+
+  button {
+  }
+`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -90,15 +124,13 @@ export const StyledForm = styled.form`
       background: ${colors.blue};
     }
   }
-  button {
-    font-size: 100%;
-    font-weight: 900;
-    padding: 10px;
+
+  a {
+    padding: 5px;
     border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    background: ${colors.blue};
-    margin: 0 25%;
+    text-decoration: none;
+    border: 1px solid #fff;
+    color: #fff;
     transition: all 0.2s ease-in;
 
     :hover {

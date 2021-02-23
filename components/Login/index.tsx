@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 import {
   Wrapper,
   Avatar,
-  Button,
+  ToolButton,
   Dropdown,
-  LoginDiv,
+  StyledDiv,
   StyledForm,
   Notification,
 } from './styles'
@@ -102,12 +102,12 @@ export default function Login() {
 
   return (
     <Wrapper>
-      <Button onClick={handleButtonClick} type="button" className="button">
+      <ToolButton onClick={handleButtonClick} type="button" className="button">
         <Avatar />
-      </Button>
+      </ToolButton>
       {/* {open && ( */}
       <Dropdown style={dropdownStyle} isActive={open} className="dropdown">
-        <LoginDiv className="login">
+        <div className="login">
           {!loggedIn ? (
             <StyledForm onSubmit={handleLogin}>
               <div>
@@ -126,19 +126,28 @@ export default function Login() {
                   onChange={({ target }) => setPassword(target.value)}
                 />
               </div>
-              <button type="submit">Login</button>
-              <Link href="/users/register">
-                <a>Register</a>
-              </Link>{' '}
+              <div>
+                <button type="submit">Login</button>
+                <Link href="/users/register">
+                  <a>Register</a>
+                </Link>{' '}
+              </div>
             </StyledForm>
           ) : (
-            <div>
-              <p>Hallo {activeUser}</p>
-              <p>UID: {uid}</p>
+            <StyledDiv>
+              <h1>Welcome</h1>
+              <div>
+                <p>LoginName: </p>
+                <p>{activeUser}</p>
+              </div>
+              <div>
+                <p>UID: </p>
+                <p>{uid}</p>
+              </div>
               <button onClick={handleLogout}>Logout</button>
-            </div>
+            </StyledDiv>
           )}{' '}
-        </LoginDiv>
+        </div>
         <Notification isActive={error}>{notify}</Notification>
       </Dropdown>
       {/* )} */}
