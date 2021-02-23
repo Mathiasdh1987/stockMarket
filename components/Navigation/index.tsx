@@ -10,9 +10,7 @@ import {
   LinkList,
   LinkItem,
   StyledLink,
-  Actions,
 } from './styles'
-import LanguageSwitcher from '../LanguageSwitcher'
 
 interface ILink {
   name: string
