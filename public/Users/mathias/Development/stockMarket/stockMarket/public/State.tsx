@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SvgState = props => (
+const SvgState = (props: any) => (
   <svg
     width={24}
     height={24}

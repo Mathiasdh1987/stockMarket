@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Container, Col } from 'styled-bootstrap-grid'
-import { colors, media } from '../../utils/globalStyle'
+import { colors } from '../../utils/globalStyle'
 
 export const Wrapper = styled(Container)`
   background: ${colors.primaryLight};
