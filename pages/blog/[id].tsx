@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import fire from '../../config/fire-config'
+// import fire from '../../config/fire-config'
 
 const Blog = (props: any) => {
   return (
@@ -12,22 +12,22 @@ const Blog = (props: any) => {
     </div>
   )
 }
-export const getServerSideProps = async ({ query }: any) => {
-  const content = {}
-  await fire
-    .firestore()
-    .collection('blog')
-    .doc(query.id)
-    .get()
-    .then((result) => {
-      content.title = result.data().title
-      content.content = result.data().content
-    })
-  return {
-    props: {
-      title: content.title,
-      content: content.content,
-    },
-  }
-}
+// export const getServerSideProps = async ({ query }: any) => {
+//   const content = String({})
+//   await fire
+//     .firestore()
+//     .collection('blog')
+//     .doc(query.id)
+//     .get()
+//     .then((result) => {
+//       content.title = result.data().title
+//       content.content = result.data().content
+//     })
+//   return {
+//     props: {
+//       title: content.title,
+//       content: content.content,
+//     },
+//   }
+// }
 export default Blog
