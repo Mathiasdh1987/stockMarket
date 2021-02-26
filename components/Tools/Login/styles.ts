@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { colors, media } from '../../utils/globalStyle'
-import SvgLogoSmall from '../../public/icons/SvgLogoSmall'
+import { colors, media } from '../../../utils/globalStyle'
+import SvgLogoSmall from '../../../public/icons/SvgLogoSmall'
 
 export const Wrapper = styled.div`
   // position: relative;
@@ -46,30 +46,12 @@ background: ${colors.primary};
   
   div {
     margin: 10px;
-    display: flex;
-    justify-content: space-between;
     
     form {
       transition: 0.5s;
       opacity: ${(props) => (props.isActive ? '1' : '0')};
       transition-delay: ${(props) => (props.isActive ? '0.5s' : '0s')};
     }
-
-     button {
-    width: 50%;
-    font-size: 100%;
-    font-weight: 900;
-    padding: 10px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    background: ${colors.blue};
-    transition: all 0.2s ease-in;
-
-    :hover {
-      transform: scale(1.1);
-    }
-  }
 `
 export const StyledDiv = styled.div`
   display: flex;
@@ -90,11 +72,9 @@ export const StyledDiv = styled.div`
     padding 5px;
     margin: 10px 0;
   }
-
-  button {
-  }
 `
 export const StyledForm = styled.form`
+  width: 100%;
   display: flex;
   flex-direction: column;
 
@@ -113,8 +93,9 @@ export const StyledForm = styled.form`
   }
 
   input {
+    width: 70%;
     border: none;
-    margin: 0 0 10px 10px;
+    // margin: 0 0 10px 10px;
     border-radius: 10px;
     padding: 5px 5px 5px 10px;
     font-size: 1vw;
@@ -124,22 +105,10 @@ export const StyledForm = styled.form`
       background: ${colors.blue};
     }
   }
-
-  a {
-    padding: 5px;
-    border-radius: 12px;
-    text-decoration: none;
-    border: 1px solid #fff;
-    color: #fff;
-    transition: all 0.2s ease-in;
-
-    :hover {
-      transform: scale(1.1);
-    }
-  }
 `
 export const Notification = styled.div<{ isActive: boolean }>`
   border-radius: 12px;
+  z-index: 0;
   margin: 0 10% 10px 10%;
   padding: 5px;
   color: white;

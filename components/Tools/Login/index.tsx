@@ -1,6 +1,8 @@
 import React, { useState, CSSProperties } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import SignUp from '../../SignUp'
+import Button from '../../Button'
+import Popup from '../../Popup'
 import {
   Wrapper,
   Avatar,
@@ -10,7 +12,7 @@ import {
   StyledForm,
   Notification,
 } from './styles'
-import fire from '../../config/fire-config'
+import fire from '../../../config/fire-config'
 
 export default function Login() {
   const [username, setUsername] = useState('')
@@ -19,7 +21,7 @@ export default function Login() {
   const [error, isError] = useState<boolean>(false)
   const router = useRouter()
   const [open, isOpen] = useState<boolean>(false)
-  // const wrapperRef = useRef(null)
+  const [popup, showPopup] = useState<boolean>(false)
   const [loggedIn, setLoggedIn] = useState(false)
   const [uid, setUid] = useState<String>('')
   const [activeUser, setActiveUser] = useState<String>('')
@@ -38,6 +40,11 @@ export default function Login() {
     if (!open) {
       isOpen(true)
     } else isOpen(false)
+  }
+  const togglePopup = () => {
+    if (!popup) {
+      showPopup(true)
+    } else showPopup(false)
   }
 
   const dropdownStyle: CSSProperties = {
@@ -81,35 +88,16 @@ export default function Login() {
     setUid('')
   }
 
-  // const handleClickOutside = (e: MouseEvent) => {
-  //   // @ts-ignore
-  //   if (wrapperRef?.current && wrapperRef.current.contains(e.target)) {
-  //     return
-  //   }
-  //   isOpen(false)
-  // }
-
-  // useEffect(() => {
-  //   if (open) {
-  //     document.addEventListener('mousedown', handleClickOutside)
-  //   } else {
-  //     document.removeEventListener('mousedown', handleClickOutside)
-  //   }
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside)
-  //   }
-  // }, [open])
-
   return (
     <Wrapper>
       <ToolButton onClick={handleButtonClick} type="button" className="button">
-        <Avatar />
+        <Avatar image="" />
       </ToolButton>
       {/* {open && ( */}
       <Dropdown style={dropdownStyle} isActive={open} className="dropdown">
         <div className="login">
           {!loggedIn ? (
-            <StyledForm onSubmit={handleLogin}>
+            <StyledForm>
               <div>
                 <p>Email</p>
                 <input
@@ -127,10 +115,24 @@ export default function Login() {
                 />
               </div>
               <div>
-                <button type="submit">Login</button>
-                <Link href="/users/register">
-                  <a>Register</a>
-                </Link>{' '}
+                <Button
+                  name="Login"
+                  primary
+                  handleAction={handleLogin}
+                  type="submit"
+                />
+                <Button onClick={togglePopup} name="Sign up" type="button" />
+                {popup ? (
+                  <Popup
+                    title="Sign up for free"
+                    show={showPopup}
+                    handleClose={togglePopup}
+                  >
+                    <SignUp />
+                  </Popup>
+                ) : (
+                  ''
+                )}
               </div>
             </StyledForm>
           ) : (

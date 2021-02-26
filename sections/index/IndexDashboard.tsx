@@ -6,7 +6,7 @@ import { Wrapper, Tools } from './styles'
 // import CreatePost from '../../components/CreatePost'
 // import ReadPost from '../../components/ReadPost'
 // import ReadSymbol from '../../components/ReadSymbol'
-import Login from '../../components/Login'
+import Login from '../../components/Tools/Login'
 // import fire from '../../config/fire-config'
 
 const IndexDashboard = () => {

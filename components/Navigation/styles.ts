@@ -3,7 +3,7 @@ import { colors, media } from '../../utils/globalStyle'
 import SvgLogoSmall from '../../public/icons/SvgLogoSmall'
 
 export const Wrapper = styled.nav<{ scrolled?: boolean }>`
-  z-index: 8;
+  z-index: 20;
   transition: height ease 0.3s, border-bottom ease 0.3s;
   position: fixed;
   top: 0;
