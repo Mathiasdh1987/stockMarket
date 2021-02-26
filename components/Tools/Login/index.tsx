@@ -67,7 +67,7 @@ export default function Login() {
           setTimeout(() => {
             setNotification('')
           }, 500)
-        }, 3000)
+        }, 5000)
       })
     setUsername('')
     setPassword('')
@@ -146,7 +146,7 @@ export default function Login() {
                 <p>UID: </p>
                 <p>{uid}</p>
               </div>
-              <button onClick={handleLogout}>Logout</button>
+              <Button onClick={handleLogout} name="Logout" />
             </StyledDiv>
           )}{' '}
         </div>
