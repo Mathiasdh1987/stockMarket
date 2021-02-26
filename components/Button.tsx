@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors, media } from '../utils/globalStyle'
+import { colors } from '../utils/globalStyle'
 
 const StyledButton = styled.button<{ primary?: boolean }>`
   background: ${(props) => (props.primary ? colors.blue : 'transparent')};
