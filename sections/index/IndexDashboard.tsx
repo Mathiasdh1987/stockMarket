@@ -1,20 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'styled-bootstrap-grid'
 // import useTranslation from 'next-translate/useTranslation'
 // import Link from 'next/link'
+// import { Console } from 'console'
 import { Wrapper, Tools } from './styles'
 // import CreatePost from '../../components/CreatePost'
 // import ReadPost from '../../components/ReadPost'
 // import ReadSymbol from '../../components/ReadSymbol'
 import Login from '../../components/Tools/Login'
-// import fire from '../../config/fire-config'
+import fire from '../../config/fire-config'
 
 const IndexDashboard = () => {
   // const { t } = useTranslation()
   // const [notification, setNotification] = useState('')
   // const [loggedIn, setLoggedIn] = useState(false)
-  // const [uid, setUid] = useState<String>('')
-  // const [activeUser, setActiveUser] = useState<String>('')
+  const [activeUser, setActiveUser] = useState(Object)
+
+  useEffect(() => {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setActiveUser(user)
+      } else {
+        setActiveUser(null)
+      }
+      //     if (user) {
+      //       console.log('logged in:', user)
+      //       setActiveUser(user)
+      //       setUserName(user!.email!)
+      //       setUid(user!.uid!)
+      //       setLoggedIn(true)
+      //       showPopup(false)
+      //     } else {
+      //       setLoggedIn(false)
+      //       console.log('User Logged Out')
+      //     }
+    })
+  }, [])
 
   // const getUserData = () => {
   //   return (
@@ -26,7 +47,14 @@ const IndexDashboard = () => {
   //   )
   // }
 
-  // fire.auth().onAuthStateChanged((user) => {
+  // useEffect(() => {
+  //   fire.auth().onAuthStateChanged((user) => {
+  //     if (user) {
+  //       setActiveUser(user)
+  //     }
+  //     console.log(activeUser)
+  //   })
+  // }, [activeUser])
   //   if (user) {
   //     setLoggedIn(true)
   //     setActiveUser(user!.email!)
@@ -68,7 +96,13 @@ const IndexDashboard = () => {
               <Col lg={1}></Col>
               <Col lg={11}>
                 <div>
-                  <h1 style={{ fontSize: '3vw' }}>DashBoard</h1>
+                  {activeUser ? (
+                    <h1 style={{ fontSize: '3vw' }}>
+                      Hello {activeUser.email}{' '}
+                    </h1>
+                  ) : (
+                    <h1 style={{ fontSize: '3vw' }}>DashBoard</h1>
+                  )}
                   {/* {getUserData()} */}
                   {/* <ReadPost /> */}
                   {/* {loggedIn && <CreatePost />} */}

@@ -29,6 +29,20 @@ const Box = styled.div<{ show?: boolean }>`
   justify-content: center;
   background: ${colors.primaryDark};
   padding: 100px;
+
+  input {
+    width: 70%;
+    border: none;
+    // margin: 0 0 10px 10px;
+    border-radius: 10px;
+    padding: 5px 5px 5px 10px;
+    font-size: 1vw;
+
+    :focus {
+      outline: none;
+      background: ${colors.blue};
+    }
+  }
 `
 
 const Popup = ({ handleClose, show, children, title }: any) => {
@@ -40,7 +54,10 @@ const Popup = ({ handleClose, show, children, title }: any) => {
       }}
     >
       <div className="background"></div>
-      <Box show={show} style={{ justifyContent: 'space-evenly' }}>
+      <Box
+        show={show}
+        style={{ marginTop: '20%', justifyContent: 'space-evenly' }}
+      >
         <Title>{title}</Title>
         {children}
         <Button

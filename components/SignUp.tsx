@@ -67,9 +67,11 @@ const Notification = styled.div<{ isActive: boolean }>`
 
 const SignUp = () => {
   const router = useRouter()
-  const [userName, setUsername] = useState('')
+  const [userEmail, setUserEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passConf, setPassConf] = useState('')
+  // const [uid, setUid] = useState('')
+  // const [activeUser, setActiveUser] = useState('')
   const [notification, setNotification] = useState('')
   const [error, isError] = useState<boolean>(false)
 
@@ -91,7 +93,18 @@ const SignUp = () => {
 
     fire
       .auth()
-      .createUserWithEmailAndPassword(userName, password)
+      .createUserWithEmailAndPassword(userEmail, password)
+      .then((cred) => {
+        if (cred) {
+          fire
+            .firestore()
+            .collection('users')
+            .doc(cred!.user!.uid)
+            .set({ email: userEmail })
+        } else {
+          return null
+        }
+      })
       .catch((err) => {
         console.log(err.code, err.message)
         isError(true)
@@ -105,15 +118,15 @@ const SignUp = () => {
       })
     router.push('/')
   }
+
   return (
     <Wrapper>
-      <Notification isActive={error}>{notification}</Notification>
       <SignUpForm onSubmit={handleLogin}>
         <input
           type="text"
-          value={userName}
+          value={userEmail}
           placeholder="Email"
-          onChange={({ target }) => setUsername(target.value)}
+          onChange={({ target }) => setUserEmail(target.value)}
         />
         <input
           type="password"
@@ -129,6 +142,7 @@ const SignUp = () => {
         />
 
         <Button name="Sign up" onClick={handleLogin} type="button"></Button>
+        <Notification isActive={error}>{notification}</Notification>
       </SignUpForm>
     </Wrapper>
   )

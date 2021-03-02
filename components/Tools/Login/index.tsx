@@ -1,4 +1,4 @@
-import React, { useState, CSSProperties } from 'react'
+import React, { useState, useEffect, CSSProperties } from 'react'
 import { useRouter } from 'next/router'
 import SignUp from '../../SignUp'
 import Button from '../../Button'
@@ -24,17 +24,29 @@ export default function Login() {
   const [popup, showPopup] = useState<boolean>(false)
   const [loggedIn, setLoggedIn] = useState(false)
   const [uid, setUid] = useState<String>('')
-  const [activeUser, setActiveUser] = useState<String>('')
+  // const [loading, isLoading] = useState<boolean>(false)
+  const [activeUser, setActiveUser] = useState(Object)
+  const [userName, setUserName] = useState<String>('')
 
-  fire.auth().onAuthStateChanged((user) => {
-    if (user) {
-      setLoggedIn(true)
-      setActiveUser(user!.email!)
-      setUid(user!.uid!)
-    } else {
-      setLoggedIn(false)
-    }
-  })
+  useEffect(() => {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setActiveUser(user)
+        setUserName(user.email!)
+        setUid(user.uid!)
+        setLoggedIn(true)
+        showPopup(false)
+        setTimeout(() => {
+          isOpen(false)
+          console.log('logged in:', user)
+          console.log(activeUser)
+        }, 1000)
+      } else {
+        setLoggedIn(false)
+        console.log('User Logged Out')
+      }
+    })
+  }, [])
 
   const handleButtonClick = () => {
     if (!open) {
@@ -97,50 +109,52 @@ export default function Login() {
       <Dropdown style={dropdownStyle} isActive={open} className="dropdown">
         <div className="login">
           {!loggedIn ? (
-            <StyledForm>
-              <div>
-                <p>Email</p>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={({ target }) => setUsername(target.value)}
-                />
-              </div>
-              <div>
-                <p>Password</p>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={({ target }) => setPassword(target.value)}
-                />
-              </div>
-              <div>
-                <Button
-                  name="Login"
-                  primary
-                  handleAction={handleLogin}
-                  type="submit"
-                />
-                <Button onClick={togglePopup} name="Sign up" type="button" />
-                {popup ? (
-                  <Popup
-                    title="Sign up for free"
-                    show={showPopup}
-                    handleClose={togglePopup}
-                  >
-                    <SignUp />
-                  </Popup>
-                ) : (
-                  ''
-                )}
-              </div>
-            </StyledForm>
+            <div>
+              <StyledForm>
+                <div>
+                  <p>Email</p>
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={({ target }) => setUsername(target.value)}
+                  />
+                </div>
+                <div>
+                  <p>Password</p>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={({ target }) => setPassword(target.value)}
+                  />
+                </div>
+                <div>
+                  <Button
+                    name="Login"
+                    primary
+                    handleAction={handleLogin}
+                    type="submit"
+                  />
+                  <Button onClick={togglePopup} name="Sign up" type="button" />
+                </div>
+              </StyledForm>
+              {popup ? (
+                <Popup
+                  title="Sign up for free"
+                  show={showPopup}
+                  handleClose={togglePopup}
+                >
+                  <SignUp />
+                </Popup>
+              ) : (
+                ''
+              )}
+            </div>
           ) : (
             <StyledDiv>
               <h1>Welcome</h1>
               <div>
                 <p>LoginName: </p>
-                <p>{activeUser}</p>
+                <p>{userName}</p>
               </div>
               <div>
                 <p>UID: </p>
