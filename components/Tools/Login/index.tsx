@@ -31,25 +31,25 @@ export default function Login(props: any) {
   const { user, loggedIn } = props
 
   // console.log(props.user)
-  // useEffect(() => {
-  //   //   fire.auth().onAuthStateChanged((user) => {
-  //   //     if (user) {
-  //   //       // setActiveUser(user)
-  //   //       setUserName(props.user.email!)
-  //   //       setUid(props.user.uid!)
-  //   //       setLoggedIn(true)
-  //   //       showPopup(false)
-  //   //       setTimeout(() => {
-  //   //         isOpen(false)
-  //   //         // console.log('logged in:', user)
-  //   //         // console.log(activeUser)
-  //   //       }, 1000)
-  //   //     } else {
-  //   //       setLoggedIn(false)
-  //   //       // console.log('User Logged Out')
-  //   //     }
-  //   //   })
-  // }, [])
+  useEffect(() => {
+    //   //   fire.auth().onAuthStateChanged((user) => {
+    //   //     if (user) {
+    //   //       // setActiveUser(user)
+    //   //       setUserName(props.user.email!)
+    //   //       setUid(props.user.uid!)
+    //   //       setLoggedIn(true)
+    //   //       showPopup(false)
+    //   //       setTimeout(() => {
+    //   //         isOpen(false)
+    //   //         // console.log('logged in:', user)
+    //   //         // console.log(activeUser)
+    //   //       }, 1000)
+    //   //     } else {
+    //   //       setLoggedIn(false)
+    //   //       // console.log('User Logged Out')
+    //   //     }
+    //   //   })
+  }, [])
 
   const handleButtonClick = () => {
     if (!open) {

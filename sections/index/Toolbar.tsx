@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Container, Row, Col } from 'styled-bootstrap-grid'
 // import useTranslation from 'next-translate/useTranslation'
 // import Link from 'next/link'
@@ -8,7 +8,7 @@ import { Wrapper, Tools } from './styles'
 // import ReadPost from '../../components/ReadPost'
 // import ReadSymbol from '../../components/ReadSymbol'
 import Login from '../../components/Tools/Login'
-import fire from '../../config/fire-config'
+// import fire from '../../config/fire-config'
 
 const Toolbar = (props: any) => {
   // const { t } = useTranslation()
