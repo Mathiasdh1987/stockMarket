@@ -14,7 +14,7 @@ import {
 } from './styles'
 import fire from '../../../config/fire-config'
 
-export default function Login() {
+export default function Login(props: any) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [notify, setNotification] = useState('')
@@ -22,31 +22,34 @@ export default function Login() {
   const router = useRouter()
   const [open, isOpen] = useState<boolean>(false)
   const [popup, showPopup] = useState<boolean>(false)
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [uid, setUid] = useState<String>('')
+  // const [loggedIn, setLoggedIn] = useState(false)
+  // const [uid, setUid] = useState<String>('')
   // const [loading, isLoading] = useState<boolean>(false)
-  const [activeUser, setActiveUser] = useState(Object)
-  const [userName, setUserName] = useState<String>('')
+  // const [activeUser, setActiveUser] = useState(Object)
+  // const [userName, setUserName] = useState<String>('')
 
-  useEffect(() => {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setActiveUser(user)
-        setUserName(user.email!)
-        setUid(user.uid!)
-        setLoggedIn(true)
-        showPopup(false)
-        setTimeout(() => {
-          isOpen(false)
-          console.log('logged in:', user)
-          console.log(activeUser)
-        }, 1000)
-      } else {
-        setLoggedIn(false)
-        console.log('User Logged Out')
-      }
-    })
-  }, [])
+  const { user, loggedIn } = props
+
+  // console.log(props.user)
+  // useEffect(() => {
+  //   //   fire.auth().onAuthStateChanged((user) => {
+  //   //     if (user) {
+  //   //       // setActiveUser(user)
+  //   //       setUserName(props.user.email!)
+  //   //       setUid(props.user.uid!)
+  //   //       setLoggedIn(true)
+  //   //       showPopup(false)
+  //   //       setTimeout(() => {
+  //   //         isOpen(false)
+  //   //         // console.log('logged in:', user)
+  //   //         // console.log(activeUser)
+  //   //       }, 1000)
+  //   //     } else {
+  //   //       setLoggedIn(false)
+  //   //       // console.log('User Logged Out')
+  //   //     }
+  //   //   })
+  // }, [])
 
   const handleButtonClick = () => {
     if (!open) {
@@ -83,6 +86,9 @@ export default function Login() {
       })
     setUsername('')
     setPassword('')
+    setTimeout(() => {
+      isOpen(false)
+    }, 1000)
     router.push('/')
   }
 
@@ -94,10 +100,11 @@ export default function Login() {
         setNotification('Logged out')
         setTimeout(() => {
           setNotification('')
-        }, 2000)
+          isOpen(false)
+        }, 1000)
       })
-    setActiveUser('')
-    setUid('')
+    // setActiveUser('')
+    // setUid('')
   }
 
   return (
@@ -105,7 +112,6 @@ export default function Login() {
       <ToolButton onClick={handleButtonClick} type="button" className="button">
         <Avatar image="" />
       </ToolButton>
-      {/* {open && ( */}
       <Dropdown style={dropdownStyle} isActive={open} className="dropdown">
         <div className="login">
           {!loggedIn ? (
@@ -154,11 +160,11 @@ export default function Login() {
               <h1>Welcome</h1>
               <div>
                 <p>LoginName: </p>
-                <p>{userName}</p>
+                <p>{user.email}</p>
               </div>
               <div>
                 <p>UID: </p>
-                <p>{uid}</p>
+                <p>{user.uid}</p>
               </div>
               <Button onClick={handleLogout} name="Logout" />
             </StyledDiv>
@@ -166,7 +172,6 @@ export default function Login() {
         </div>
         <Notification isActive={error}>{notify}</Notification>
       </Dropdown>
-      {/* )} */}
     </Wrapper>
   )
 }

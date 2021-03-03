@@ -10,32 +10,34 @@ import { Wrapper, Tools } from './styles'
 import Login from '../../components/Tools/Login'
 import fire from '../../config/fire-config'
 
-const IndexDashboard = () => {
+const Toolbar = (props: any) => {
   // const { t } = useTranslation()
   // const [notification, setNotification] = useState('')
   // const [loggedIn, setLoggedIn] = useState(false)
-  const [activeUser, setActiveUser] = useState(Object)
+  // const [activeUser, setActiveUser] = useState(Object)
 
-  useEffect(() => {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setActiveUser(user)
-      } else {
-        setActiveUser(null)
-      }
-      //     if (user) {
-      //       console.log('logged in:', user)
-      //       setActiveUser(user)
-      //       setUserName(user!.email!)
-      //       setUid(user!.uid!)
-      //       setLoggedIn(true)
-      //       showPopup(false)
-      //     } else {
-      //       setLoggedIn(false)
-      //       console.log('User Logged Out')
-      //     }
-    })
-  }, [])
+  const { loggedIn, user } = props
+
+  // useEffect(() => {
+  //   fire.auth().onAuthStateChanged((user) => {
+  //     if (user) {
+  //       setActiveUser(user)
+  //     } else {
+  //       setActiveUser(null)
+  //     }
+  //     if (user) {
+  //       console.log('logged in:', user)
+  //       setActiveUser(user)
+  //       setUserName(user!.email!)
+  //       setUid(user!.uid!)
+  //       setLoggedIn(true)
+  //       showPopup(false)
+  //     } else {
+  //       setLoggedIn(false)
+  //       console.log('User Logged Out')
+  //     }
+  //   })
+  // }, [])
 
   // const getUserData = () => {
   //   return (
@@ -88,7 +90,7 @@ const IndexDashboard = () => {
     <Wrapper id="dashboard">
       <Row style={{ height: '100%' }}>
         <Tools style={{ padding: '0' }} lg={1} id="tools">
-          <Login />
+          <Login user={user} loggedIn={loggedIn} />
         </Tools>
         <Col lg={11} id="content">
           <Container>
@@ -96,10 +98,8 @@ const IndexDashboard = () => {
               <Col lg={1}></Col>
               <Col lg={11}>
                 <div>
-                  {activeUser ? (
-                    <h1 style={{ fontSize: '3vw' }}>
-                      Hello {activeUser.email}{' '}
-                    </h1>
+                  {user ? (
+                    <h1 style={{ fontSize: '3vw' }}>Hello {user.email} </h1>
                   ) : (
                     <h1 style={{ fontSize: '3vw' }}>DashBoard</h1>
                   )}
@@ -116,4 +116,4 @@ const IndexDashboard = () => {
   )
 }
 
-export default IndexDashboard
+export default Toolbar
